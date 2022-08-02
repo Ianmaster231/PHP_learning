@@ -8,12 +8,33 @@
 </head>
 <body>
     <?php 
-    
+    //addiion
     echo 56 + 45;
+    //breakline
     echo "<br>";
+    //subtraction
     echo 56 - 45;
+    //breakline
     echo "<br>";
+    //multiplation
     echo 56 * 45;
+    echo "<br>";
+    //division
+    echo 56 / 45;
+    echo "<br>";
+    echo "<br>";
+
+    echo 45 +34 * 45 /421 - 45;
+    echo "<br>";
+    //addition of parentisies
+    echo (5 + 5) * 10;
+
+    echo "<br>";
+
+    $number1 = 12;
+    $number2 = 24;
+    echo $number1 + $number2;
+
     ?>
 </body>
 </html>
