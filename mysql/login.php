@@ -1,3 +1,27 @@
+<?php 
+    if(isset($_POST['submit'])){
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        //The code below is going to connect to a database
+        //The default user is root and password is empty
+        //loginapp can be found in my localhost/phpmyadmin and in databases created
+        $connection = mysqli_connect('localhost','root','','loginapp');
+
+            if($connection){
+                echo "We ae connected";
+            } else {
+                die("Database connection failed");
+            }
+
+        //To comment selected code press CTRL+K+C
+            // if($username && $password){ 
+            //     echo $username;
+            //     echo $password;
+            // } else {
+            //     echo "This Field Can't Be Empty";
+            // }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +35,8 @@
 <body>
     
     <div class="container">
-        <div class="col-xs-6">
-            <form action="login.php" method="post">
+        <div class="col-sm-6">
+            <form action="login_create.php" method="post">
                 <div class="form-roup">
                     <label for="username" class="username">Username</label>
                     <input type="text" name="username" class="form-control">
@@ -22,7 +46,7 @@
                     <input type="password" name="password" class="form-control">
                 </div>
                 <br>
-                <input type="submit" class="btn btn-primary" name="Submit" value="Submit">
+                <input type="submit" class="btn btn-primary" name="submit" value="Submit">
             </form>
         </div>
     </div>
