@@ -1,6 +1,23 @@
 <?php include "db.php";?>
 <?php
 
+function createRows(){
+    if(isset($_POST['submit'])){
+        global $connection;
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+            $query = "INSERT INTO users(username,password)";
+            //this line will concitatnate
+            $query .= "VALUES ('$username','$password')";
+        $result = mysqli_query($connection,$query);
+        if(!$result){
+            die('Query failed');
+        } else {
+            echo "Record Created";
+        }
+    }
+}
+
 function showAllData(){
     global $connection;
      $query = "SELECT * FROM users";
@@ -16,6 +33,7 @@ function showAllData(){
 }
 
     function UpdateTable(){
+        if(isset($_POST['submit'])){
         global $connection;
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -33,10 +51,14 @@ function showAllData(){
         $result = mysqli_query($connection, $query);
         if(!$result){
             die("QUERY FAILED".mysqli_error($connection));
+        } else {
+            echo "Record Update";
         }
+    }
     }
 
     function DeleteRows(){
+        if(isset($_POST['submit'])){
         global $connection;
         // $username = $_POST['username'];
         // $password = $_POST['password'];
@@ -52,6 +74,23 @@ function showAllData(){
         $result = mysqli_query($connection, $query);
         if(!$result){
             die("QUERY FAILED".mysqli_error($connection));
+        }else {
+            echo "Record Deleted";
+        }
+    }
+}
+
+    function readRows(){
+    global $connection;
+    $query = "SELECT * FROM users";
+    $result = mysqli_query($connection,$query);
+        if(!$result){
+        die('Query failed' );
+        }
+
+         //gives more detail in the array for mysqli_fetch_assoc
+         while($row = mysqli_fetch_assoc($result)) {
+            print_r($row);
         }
     }
 ?>
