@@ -6,6 +6,16 @@ function createRows(){
         global $connection;
         $username = $_POST['username'];
         $password = $_POST['password'];
+        //the below function is gong to scape al the data all inside that field
+        $username = mysqli_real_escape_string($connection, $username);
+        $password = mysqli_real_escape_string($connection, $password);
+
+        //creating an encryption for the password with blowwfish
+        $hashFormat = "$2y$10$"; // this is like the lottery system for haracters
+        $salt = "iusesomecrazystrings22";//this makes it to 22 stringtext
+        $hashF_and_salt = $hashFormat . $salt; //combining the functions
+        $password = crypt($password,$hashF_and_salt); //embeds both functions into password
+        // encrypt password code ends here as inmplemented below
             $query = "INSERT INTO users(username,password)";
             //this line will concitatnate
             $query .= "VALUES ('$username','$password')";
